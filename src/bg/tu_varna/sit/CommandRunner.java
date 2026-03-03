@@ -1,9 +1,6 @@
 package bg.tu_varna.sit;
 
-import bg.tu_varna.sit.commands.AddCommand;
-import bg.tu_varna.sit.commands.Command;
-import bg.tu_varna.sit.commands.HelpCommand;
-import bg.tu_varna.sit.commands.PrintCommand;
+import bg.tu_varna.sit.commands.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +15,7 @@ public class CommandRunner {
         commands.put("add", new AddCommand());
         commands.put("print", new PrintCommand());
         commands.put("help", new HelpCommand(commands));
+        commands.put("exit", new ExitCommand(this));
     }
 
     public void start() {
@@ -31,5 +29,9 @@ public class CommandRunner {
             Command cmd = commands.get(name);
             cmd.execute();
         }
+    }
+
+    public void stop() {
+        isRunning = false;
     }
 }
