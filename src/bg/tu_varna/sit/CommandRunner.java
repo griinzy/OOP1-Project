@@ -1,6 +1,7 @@
 package bg.tu_varna.sit;
 
 import bg.tu_varna.sit.commands.*;
+import bg.tu_varna.sit.commands.interfaces.Command;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,10 +25,16 @@ public class CommandRunner {
         while(isRunning) {
             System.out.print("> ");
             String input = scanner.nextLine();
-            String[] parts = input.split(" ");
+            String[] parts = input.split(" ", 2);
             String name = parts[0];
+            String[] args = parts[1].split(" ");
             Command cmd = commands.get(name);
-            cmd.execute();
+            if(cmd != null) {
+                cmd.execute(args);
+            }
+            else {
+                System.out.println("Unknown command");
+            }
         }
     }
 

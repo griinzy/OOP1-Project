@@ -1,7 +1,8 @@
 package bg.tu_varna.sit.commands;
 
+import bg.tu_varna.sit.commands.interfaces.Command;
+
 import java.util.Map;
-import java.util.HashMap;
 
 
 public class HelpCommand implements Command {
@@ -22,7 +23,7 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(String[] args) {
         System.out.println("The following commands are supported:");
         for(Command cmd : commands.values()) {
             System.out.println(cmd.getName() + "\t\t" + cmd.getDescription());

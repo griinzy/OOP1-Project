@@ -1,6 +1,6 @@
 package bg.tu_varna.sit.commands;
 
-import java.time.LocalDate;
+import bg.tu_varna.sit.commands.interfaces.Command;
 
 public class AddCommand implements Command {
     @Override
@@ -14,7 +14,7 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(String[] args) {
 
     }
 }

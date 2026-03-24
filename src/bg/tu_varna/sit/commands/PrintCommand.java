@@ -1,5 +1,7 @@
 package bg.tu_varna.sit.commands;
 
+import bg.tu_varna.sit.commands.interfaces.Command;
+
 public class PrintCommand implements Command {
 
     @Override
@@ -13,7 +15,7 @@ public class PrintCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(String[] args) {
 
     }
 }

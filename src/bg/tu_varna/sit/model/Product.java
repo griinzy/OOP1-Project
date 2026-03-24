@@ -1,5 +1,7 @@
 package bg.tu_varna.sit.model;
 
+import bg.tu_varna.sit.enums.Unit;
+
 import java.time.LocalDate;
 
 public class Product {
@@ -7,12 +9,12 @@ public class Product {
     private LocalDate expiryDate;
     private LocalDate dateAdded;
     private String manufacturer;
-    private String unit;
+    private Unit unit;
     private double quantity;
-    private String location;
+    private Location location;
     private String comment;
 
-    public Product(String name, LocalDate expiryDate, LocalDate dateAdded, String manufacturer, String unit, double quantity, String location, String comment) {
+    public Product(String name, LocalDate expiryDate, LocalDate dateAdded, String manufacturer, Unit unit, double quantity, Location location, String comment) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.dateAdded = dateAdded;
@@ -26,64 +28,29 @@ public class Product {
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public LocalDate getExpiryDate() {
         return expiryDate;
     }
-
-    public void setExpiryDate(LocalDate expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
     public LocalDate getDateAdded() {
         return dateAdded;
     }
-
-    public void setDateAdded(LocalDate dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
     public String getManufacturer() {
         return manufacturer;
     }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public String getUnit() {
+    public Unit getUnit() {
         return unit;
     }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
     public double getQuantity() {
         return quantity;
     }
-
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 }
