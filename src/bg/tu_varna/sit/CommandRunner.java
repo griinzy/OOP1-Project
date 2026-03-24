@@ -27,7 +27,7 @@ public class CommandRunner {
             String input = scanner.nextLine();
             String[] parts = input.split(" ", 2);
             String name = parts[0];
-            String[] args = parts[1].split(" ");
+            String[] args = Tokenizer.tokenize(parts[1]).toArray(new String[0]);
             Command cmd = commands.get(name);
             if(cmd != null) {
                 cmd.execute(args);
