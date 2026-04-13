@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse {
-    private List<Product> products;
+    private static Warehouse instance;
 
-    public Warehouse() {
-        products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
+
+    private Warehouse() { }
+
+    public static Warehouse getInstance() {
+        if(instance == null) {
+            instance = new Warehouse();
+        }
+        return instance;
     }
 
     public List<Product> getProducts() {
