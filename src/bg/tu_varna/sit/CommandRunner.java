@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CommandRunner {
-    private Map<String, Command> commands = new HashMap<>();
+    private final Map<String, Command> commands = new HashMap<>();
     private boolean isRunning;
 
     public CommandRunner() {
@@ -27,7 +27,7 @@ public class CommandRunner {
             String input = scanner.nextLine();
             String[] parts = input.split(" ", 2);
             String name = parts[0];
-            String[] args = Tokenizer.tokenize(parts[1]).toArray(new String[0]);
+            String[] args = parts.length > 1 ? Tokenizer.tokenize(parts[1]).toArray(new String[0]) : new String[0];
             Command cmd = commands.get(name);
             if(cmd != null) {
                 cmd.execute(args);
