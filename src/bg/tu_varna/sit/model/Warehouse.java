@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Warehouse {
     private static Warehouse instance;
@@ -38,6 +39,10 @@ public class Warehouse {
         products.add(product);
     }
 
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
+
     private boolean isLocationFree(Location location) {
         return products.stream().noneMatch(p -> p.getLocation().equals(location));
     }
@@ -58,5 +63,9 @@ public class Warehouse {
              manufacturers.put(name, new Manufacturer(name));
         }
         return manufacturers.get(name);
+    }
+
+    public List<Product> getProductBatchesByName(String name) {
+        return products.stream().filter(p -> p.getName().equals(name)).collect(Collectors.toList());
     }
 }

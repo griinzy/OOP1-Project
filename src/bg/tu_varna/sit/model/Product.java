@@ -62,6 +62,7 @@ public class Product {
     public void addQuantity(double amount) {
         this.quantity += amount;
     }
+    public void removeQuantity(double amount) { this.quantity -= amount; }
 
     @Override
     public String toString() {
