@@ -25,7 +25,32 @@ public class Warehouse {
     }
 
     public void addProduct(Product product) {
+        // еднакви продукти с един и същи срок на годност се поствавят на едно и също място
+        for(Product prod : products) {
+            if(prod.getName().equals(product.getName()) && prod.getExpiryDate().equals(product.getExpiryDate())) {
+                prod.addQuantity(product.getQuantity());
+                return;
+            }
+        }
+
+        Location location = findFreeLocation(product.getSection());
+        product.setLocation(location);
         products.add(product);
+    }
+
+    private boolean isLocationFree(Location location) {
+        return products.stream().noneMatch(p -> p.getLocation().equals(location));
+    }
+
+    private Location findFreeLocation(String section) {
+        for(int shelf = 1; ; shelf++) {
+            for(int slot = 1; slot <= 20; slot++) {
+                Location loc = new Location(section, shelf, slot);
+                if(isLocationFree(loc)) {
+                    return loc;
+                }
+            }
+        }
     }
 
     public Manufacturer getManufacturer(String name) {

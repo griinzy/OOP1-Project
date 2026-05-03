@@ -10,18 +10,19 @@ public class Product {
     private LocalDate dateAdded;
     private Manufacturer manufacturer;
     private Unit unit;
+    private String section;
     private double quantity;
     private Location location;
     private String comment;
 
-    public Product(String name, LocalDate expiryDate, LocalDate dateAdded, Manufacturer manufacturer, Unit unit, double quantity, Location location, String comment) {
+    public Product(String name, LocalDate expiryDate, LocalDate dateAdded, Manufacturer manufacturer, Unit unit, double quantity, String section, String comment) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.dateAdded = dateAdded;
         this.manufacturer = manufacturer;
         this.unit = unit;
         this.quantity = quantity;
-        this.location = location;
+        this.section = section;
         this.comment = comment;
     }
 
@@ -43,6 +44,7 @@ public class Product {
     public double getQuantity() {
         return quantity;
     }
+    public String getSection() { return section; }
     public Location getLocation() {
         return location;
     }
@@ -52,6 +54,13 @@ public class Product {
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void addQuantity(double amount) {
+        this.quantity += amount;
     }
 
     @Override
