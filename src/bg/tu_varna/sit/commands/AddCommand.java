@@ -3,6 +3,7 @@ package bg.tu_varna.sit.commands;
 import bg.tu_varna.sit.commands.interfaces.Command;
 import bg.tu_varna.sit.enums.Unit;
 import bg.tu_varna.sit.model.Location;
+import bg.tu_varna.sit.model.Manufacturer;
 import bg.tu_varna.sit.model.Product;
 import bg.tu_varna.sit.model.Warehouse;
 import bg.tu_varna.sit.util.DateParser;
@@ -27,7 +28,7 @@ public class AddCommand implements Command {
         String name = args[0];
         LocalDate expiry = DateParser.parse(args[1]);
         LocalDate added = DateParser.parse(args[2]);
-        String manufacturer = args[3];
+        Manufacturer manufacturer = warehouse.getManufacturer(args[3]);
         Unit unit = Unit.valueOf(args[4].toUpperCase());
         double quantity = Double.parseDouble(args[5]);
         Location location = Location.parse(args[6]);

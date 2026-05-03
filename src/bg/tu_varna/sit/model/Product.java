@@ -8,13 +8,13 @@ public class Product {
     private String name;
     private LocalDate expiryDate;
     private LocalDate dateAdded;
-    private String manufacturer;
+    private Manufacturer manufacturer;
     private Unit unit;
     private double quantity;
     private Location location;
     private String comment;
 
-    public Product(String name, LocalDate expiryDate, LocalDate dateAdded, String manufacturer, Unit unit, double quantity, Location location, String comment) {
+    public Product(String name, LocalDate expiryDate, LocalDate dateAdded, Manufacturer manufacturer, Unit unit, double quantity, Location location, String comment) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.dateAdded = dateAdded;
@@ -34,7 +34,7 @@ public class Product {
     public LocalDate getDateAdded() {
         return dateAdded;
     }
-    public String getManufacturer() {
+    public Manufacturer getManufacturer() {
         return manufacturer;
     }
     public Unit getUnit() {

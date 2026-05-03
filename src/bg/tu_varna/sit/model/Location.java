@@ -1,5 +1,7 @@
 package bg.tu_varna.sit.model;
 
+import java.util.Objects;
+
 public class Location {
     private String section;
     private int shelf;
@@ -33,6 +35,11 @@ public class Location {
         }
         Location other = (Location) o;
         return this.section.equals(other.section) && this.shelf == other.shelf && this.slot == other.slot;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(section, shelf, slot);
     }
 
     @Override
