@@ -14,6 +14,7 @@ public class CommandRunner {
 
     public CommandRunner() {
         commands.put("add", new AddCommand());
+        commands.put("remove", new RemoveCommand());
         commands.put("print", new PrintCommand());
         commands.put("help", new HelpCommand(commands));
         commands.put("exit", new ExitCommand(this));
@@ -30,14 +31,13 @@ public class CommandRunner {
             String[] args = parts.length > 1 ? Tokenizer.tokenize(parts[1]).toArray(new String[0]) : new String[0];
             Command cmd = commands.get(name);
             if(cmd != null) {
-                cmd.execute(args);
+                System.out.println(cmd.execute(args));
             }
             else {
                 System.out.println("Unknown command");
             }
         }
     }
-
     public void stop() {
         isRunning = false;
     }

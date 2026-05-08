@@ -21,8 +21,8 @@ public class ExitCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
-        System.out.println("Exiting the program...");
+    public String execute(String[] args) {
         runner.stop();
+        return "Exiting the program...";
     }
 }

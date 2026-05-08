@@ -23,10 +23,11 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
-        System.out.println("The following commands are supported:");
+    public String execute(String[] args) {
+        StringBuilder result = new StringBuilder("The following commands are supported:\n");
         for(Command cmd : commands.values()) {
-            System.out.println(cmd.getName() + "\t\t" + cmd.getDescription());
+            result.append(cmd.getName()).append("\t\t").append(cmd.getDescription()).append("\n");
         }
+        return result.toString();
     }
 }

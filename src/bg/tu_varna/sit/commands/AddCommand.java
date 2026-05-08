@@ -15,7 +15,7 @@ public class AddCommand implements Command {
 
     @Override
     public String getName() {
-        return "add";
+        return "add ";
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         String name = args[0];
         LocalDate expiry = DateParser.parse(args[1]);
         LocalDate added = DateParser.parse(args[2]);
@@ -36,5 +36,6 @@ public class AddCommand implements Command {
 
         Product product = new Product(name, expiry, added, manufacturer, unit, quantity, section, comment);
         warehouse.addProduct(product);
+        return "Product " + name + " added successfully.";
     }
 }

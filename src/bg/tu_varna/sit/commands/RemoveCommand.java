@@ -21,13 +21,22 @@ public class RemoveCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         String name = args[0];
         double quantity = Double.parseDouble(args[1]);
 
         List<Product> batches = warehouse.getProductBatchesByName(name);
 
         batches.sort(Comparator.comparing(Product::getExpiryDate));
+
+        double totalAvailable = 0;
+        for(Product batch : batches) {
+            totalAvailable += batch.getQuantity();
+        }
+
+        if(quantity > totalAvailable) {
+
+        }
 
         double remainingQuantity = quantity;
         for(Product batch : batches) {
@@ -41,5 +50,6 @@ public class RemoveCommand implements Command {
                 remainingQuantity = 0;
             }
         }
+        return "";
     }
 }

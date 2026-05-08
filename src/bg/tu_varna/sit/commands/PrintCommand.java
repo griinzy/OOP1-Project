@@ -20,11 +20,13 @@ public class PrintCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         List<Product> products = warehouse.getProducts();
 
+        StringBuilder result = new StringBuilder("Products in warehouse:\n");
         for(Product p : products) {
-            System.out.println(p);
+            result.append(p).append("\n");
         }
+        return result.toString();
     }
 }
