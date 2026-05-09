@@ -29,27 +29,61 @@ public class RemoveCommand implements Command {
 
         batches.sort(Comparator.comparing(Product::getExpiryDate));
 
-        double totalAvailable = 0;
-        for(Product batch : batches) {
-            totalAvailable += batch.getQuantity();
-        }
+        double totalAvailable = batches.stream().mapToDouble(Product::getQuantity).sum();
 
         if(quantity > totalAvailable) {
-
+            StringBuilder result = new StringBuilder();
+            result.append("Trying to remove more than is available. Available batches: \n");
+            for(Product batch : batches) {
+                result.append(batch.getName())
+                        .append(" - ")
+                        .append(batch.getQuantity())
+                        .append(" ")
+                        .append(batch.getUnit())
+                        .append(", expires: ")
+                        .append(batch.getExpiryDate())
+                        .append("\n");
+            }
+            result.append("CONFIRM_REMOVE");
+            return result.toString();
         }
+        return remove(batches, quantity);
+    }
+
+    public String remove(List<Product> batches, double quantity) {
+        StringBuilder result = new StringBuilder();
 
         double remainingQuantity = quantity;
         for(Product batch : batches) {
             if(remainingQuantity <= 0) break;
             if(batch.getQuantity() <= remainingQuantity) {
+                result.append("Removed ")
+                        .append(batch.getQuantity())
+                        .append(" ")
+                        .append(batch.getUnit())
+                        .append(" of ")
+                        .append(batch.getName())
+                        .append(" from ")
+                        .append(batch.getLocation())
+                        .append("\n");
                 remainingQuantity -= batch.getQuantity();
                 warehouse.removeProduct(batch);
             }
             else {
+                result.append("Removed ")
+                        .append(remainingQuantity)
+                        .append(" ")
+                        .append(batch.getUnit())
+                        .append(" of ")
+                        .append(batch.getName())
+                        .append(" from ")
+                        .append(batch.getLocation())
+                        .append("\n");
                 batch.removeQuantity(remainingQuantity);
                 remainingQuantity = 0;
             }
         }
-        return "";
+
+        return result.toString();
     }
 }

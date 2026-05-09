@@ -7,18 +7,17 @@ import bg.tu_varna.sit.commands.fileCommands.SaveAsCommand;
 import bg.tu_varna.sit.commands.fileCommands.SaveCommand;
 import bg.tu_varna.sit.commands.interfaces.Command;
 import bg.tu_varna.sit.files.FileService;
+import bg.tu_varna.sit.model.Product;
+import bg.tu_varna.sit.model.Warehouse;
 import bg.tu_varna.sit.util.Tokenizer;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class CommandRunner {
     private final Map<String, Command> commands = new HashMap<>();
     private boolean isRunning;
 
+    private final Warehouse warehouse = Warehouse.getInstance();
     private final FileService fileService = FileService.getInstance();
 
     private static final Set<String> allowedCommands = Set.of("open", "help", "exit"); // commands that can be used without having a file open
@@ -60,7 +59,19 @@ public class CommandRunner {
                     System.out.println("No file is currently open.");
                 }
                 else {
-                    System.out.println(cmd.execute(args));
+                    String result = cmd.execute(args);
+                    if (result.endsWith("CONFIRM_REMOVE")) {
+                        System.out.println(result.replace("CONFIRM_REMOVE", "").trim());
+                        System.out.print("Remove what's available? (yes/no): ");
+                        if (scanner.nextLine().trim().equalsIgnoreCase("yes")) {
+                            List<Product> batches = new ArrayList<>(warehouse.getProductBatchesByName(args[0]));
+                            batches.sort(Comparator.comparing(Product::getExpiryDate));
+                            double total = batches.stream().mapToDouble(Product::getQuantity).sum();
+                            System.out.println(((RemoveCommand) cmd).remove(batches, total));
+                        }
+                    } else {
+                        System.out.println(result);
+                    }
                 }
             }
             else {

@@ -3,8 +3,6 @@ package bg.tu_varna.sit.commands.fileCommands;
 import bg.tu_varna.sit.commands.interfaces.Command;
 import bg.tu_varna.sit.files.FileService;
 
-import java.io.IOException;
-
 public class SaveAsCommand implements Command {
     private final FileService fileService = FileService.getInstance();
 

@@ -1,9 +1,8 @@
 package bg.tu_varna.sit.model;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Location implements Serializable {
+public class Location {
     private String section;
     private int shelf;
     private int slot;

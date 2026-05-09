@@ -1,8 +1,6 @@
 package bg.tu_varna.sit.model;
 
-import java.io.Serializable;
-
-public class Manufacturer implements Serializable {
+public class Manufacturer {
     private String name;
 
     public Manufacturer(String name) {

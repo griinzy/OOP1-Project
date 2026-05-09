@@ -2,10 +2,9 @@ package bg.tu_varna.sit.model;
 
 import bg.tu_varna.sit.enums.Unit;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Product implements Serializable {
+public class Product {
     private String name;
     private LocalDate expiryDate;
     private LocalDate dateAdded;
