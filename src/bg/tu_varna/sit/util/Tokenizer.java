@@ -1,5 +1,4 @@
-package bg.tu_varna.sit;
-
+package bg.tu_varna.sit.util;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,6 @@ package bg.tu_varna.sit.commands;
 
 import bg.tu_varna.sit.commands.interfaces.Command;
 import bg.tu_varna.sit.enums.Unit;
-import bg.tu_varna.sit.model.Location;
 import bg.tu_varna.sit.model.Manufacturer;
 import bg.tu_varna.sit.model.Product;
 import bg.tu_varna.sit.model.Warehouse;

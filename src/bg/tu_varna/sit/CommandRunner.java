@@ -1,7 +1,11 @@
 package bg.tu_varna.sit;
 
 import bg.tu_varna.sit.commands.*;
+import bg.tu_varna.sit.commands.fileCommands.OpenCommand;
+import bg.tu_varna.sit.commands.fileCommands.SaveAsCommand;
+import bg.tu_varna.sit.commands.fileCommands.SaveCommand;
 import bg.tu_varna.sit.commands.interfaces.Command;
+import bg.tu_varna.sit.util.Tokenizer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +22,9 @@ public class CommandRunner {
         commands.put("print", new PrintCommand());
         commands.put("help", new HelpCommand(commands));
         commands.put("exit", new ExitCommand(this));
+        commands.put("open", new OpenCommand());
+        commands.put("save", new SaveCommand());
+        commands.put("save as", new SaveAsCommand());
     }
 
     public void start() {
@@ -26,9 +33,19 @@ public class CommandRunner {
         while(isRunning) {
             System.out.print("> ");
             String input = scanner.nextLine();
-            String[] parts = input.split(" ", 2);
-            String name = parts[0];
-            String[] args = parts.length > 1 ? Tokenizer.tokenize(parts[1]).toArray(new String[0]) : new String[0];
+            String name;
+            String[] args;
+
+            if(input.startsWith("save as")) {
+                name = "save as";
+                String remainingInput = input.substring("save as".length());
+                args = remainingInput.isEmpty() ? new String[0] : Tokenizer.tokenize(remainingInput).toArray(new String[0]);
+            }
+            else {
+                String[] parts = input.split(" ", 2);
+                name = parts[0];
+                args = parts.length > 1 ? Tokenizer.tokenize(parts[1]).toArray(new String[0]) : new String[0];
+            }
             Command cmd = commands.get(name);
             if(cmd != null) {
                 System.out.println(cmd.execute(args));

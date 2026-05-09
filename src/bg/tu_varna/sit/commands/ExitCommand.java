@@ -4,7 +4,7 @@ import bg.tu_varna.sit.CommandRunner;
 import bg.tu_varna.sit.commands.interfaces.Command;
 
 public class ExitCommand implements Command {
-    private CommandRunner runner;
+    private final CommandRunner runner;
 
     public ExitCommand(CommandRunner runner) {
         this.runner = runner;
