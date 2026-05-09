@@ -6,16 +6,22 @@ import bg.tu_varna.sit.commands.fileCommands.OpenCommand;
 import bg.tu_varna.sit.commands.fileCommands.SaveAsCommand;
 import bg.tu_varna.sit.commands.fileCommands.SaveCommand;
 import bg.tu_varna.sit.commands.interfaces.Command;
+import bg.tu_varna.sit.files.FileService;
 import bg.tu_varna.sit.util.Tokenizer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import java.util.Scanner;
+import java.util.Set;
 
 public class CommandRunner {
     private final Map<String, Command> commands = new HashMap<>();
     private boolean isRunning;
+
+    private final FileService fileService = FileService.getInstance();
+
+    private static final Set<String> allowedCommands = Set.of("open", "help", "exit"); // commands that can be used without having a file open
 
     public CommandRunner() {
         commands.put("add", new AddCommand());
@@ -50,7 +56,12 @@ public class CommandRunner {
             }
             Command cmd = commands.get(name);
             if(cmd != null) {
-                System.out.println(cmd.execute(args));
+                if(!allowedCommands.contains(name) && !fileService.isFileOpen()) {
+                    System.out.println("No file is currently open.");
+                }
+                else {
+                    System.out.println(cmd.execute(args));
+                }
             }
             else {
                 System.out.println("Unknown command");
