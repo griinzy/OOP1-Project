@@ -20,7 +20,7 @@ public class OpenCommand implements Command {
 
     @Override
     public String getDescription() {
-        return "open <file> - Opens a file.";
+        return "open <path> - Opens a file.";
     }
 
     @Override
