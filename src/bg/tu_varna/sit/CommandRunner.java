@@ -1,6 +1,7 @@
 package bg.tu_varna.sit;
 
 import bg.tu_varna.sit.commands.*;
+import bg.tu_varna.sit.commands.fileCommands.CloseCommand;
 import bg.tu_varna.sit.commands.fileCommands.OpenCommand;
 import bg.tu_varna.sit.commands.fileCommands.SaveAsCommand;
 import bg.tu_varna.sit.commands.fileCommands.SaveCommand;
@@ -23,6 +24,7 @@ public class CommandRunner {
         commands.put("help", new HelpCommand(commands));
         commands.put("exit", new ExitCommand(this));
         commands.put("open", new OpenCommand());
+        commands.put("close", new CloseCommand());
         commands.put("save", new SaveCommand());
         commands.put("save as", new SaveAsCommand());
     }
