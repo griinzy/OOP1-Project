@@ -2,11 +2,19 @@ package bg.tu_varna.sit.model;
 
 import java.util.Objects;
 
+/**
+ * Място в склада
+ */
 public class Location {
     private String section;
     private int shelf;
     private int slot;
 
+    /**
+     * @param section секция в склада
+     * @param shelf номерът на рафта в секцията
+     * @param slot номерът на позицията на рафта
+     */
     public Location(String section, int shelf, int slot) {
         this.section = section;
         this.shelf = shelf;
@@ -23,6 +31,11 @@ public class Location {
         return slot;
     }
 
+    /**
+     * Преобразува низ от формат секция/рафт/позиция към Location
+     * @param args низът за преобразуване
+     * @return локация като обект
+     */
     public static Location parse(String args) {
         String[] parts = args.split("/");
         return new Location(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));

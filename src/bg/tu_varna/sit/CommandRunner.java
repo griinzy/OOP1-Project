@@ -13,16 +13,30 @@ import bg.tu_varna.sit.model.Warehouse;
 import bg.tu_varna.sit.util.Tokenizer;
 
 import java.util.*;
-
+/**
+ * Клас, контролиращ програмата. Чете и изпълнява командите
+ */
 public class CommandRunner {
+    /**
+     * Колекция с регистрираните команди
+     */
     private final Map<String, Command> commands = new HashMap<>();
     private boolean isRunning;
 
     private final Warehouse warehouse = Warehouse.getInstance();
     private final FileService fileService = FileService.getInstance();
 
-    private static final Set<String> allowedCommands = Set.of("open", "help", "exit"); // commands that can be used without having a file open
+    /**
+     * Командите, които могат да се използват без отворен файл
+     */
+    private static final Set<String> allowedCommands = Set.of(
+                                                        CommandType.OPEN.toString(),
+                                                        CommandType.HELP.toString(),
+                                                        CommandType.EXIT.toString());
 
+    /**
+     * Конструктор, който регистрира всички команди
+     */
     public CommandRunner() {
         registerCommand(CommandType.ADD, new AddCommand());
         registerCommand(CommandType.REMOVE, new RemoveCommand());
@@ -37,10 +51,18 @@ public class CommandRunner {
         registerCommand(CommandType.SAVE_AS, new SaveAsCommand());
     }
 
+    /**
+     * Регистрира командата в колекцията
+     * @param type Типа на командата
+     * @param command Инстанцията на командата
+     */
     private void registerCommand(CommandType type, Command command) {
         commands.put(type.toString(), command);
     }
 
+    /**
+     * Главният цикъл на програмата
+     */
     public void start() {
         isRunning = true;
         Scanner scanner = new Scanner(System.in);

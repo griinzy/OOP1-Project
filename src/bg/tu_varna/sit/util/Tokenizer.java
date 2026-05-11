@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tokenizer {
+    /**
+     * Разделя входния низ по интервали и обединява думи в кавички в един токен
+     * @param args Входния низ за разделяне
+     * @return Списък с токени
+     */
     public static List<String> tokenize(String args) {
         List<String> tokens = new ArrayList<>();
         StringBuilder currentArg = new StringBuilder();

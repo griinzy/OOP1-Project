@@ -5,6 +5,9 @@ import bg.tu_varna.sit.util.DateParser;
 
 import java.time.LocalDate;
 
+/**
+ * Продукт в склада
+ */
 public class Product {
     private String name;
     private LocalDate expiryDate;
@@ -16,6 +19,17 @@ public class Product {
     private Location location;
     private String comment;
 
+    /**
+     * Създава нов продукт
+     * @param name име на продукта
+     * @param expiryDate срок на годност
+     * @param dateAdded дата на добавяне
+     * @param manufacturer производител
+     * @param unit мерна единица
+     * @param quantity количество
+     * @param section секция в склада
+     * @param comment коментар
+     */
     public Product(String name, LocalDate expiryDate, LocalDate dateAdded, Manufacturer manufacturer, Unit unit, double quantity, String section, String comment) {
         this.name = name;
         this.expiryDate = expiryDate;
@@ -60,9 +74,18 @@ public class Product {
         this.location = location;
     }
 
+    /**
+     * Увеличава количеството с дадена стойност
+     * @param amount стойността, с която се увеличава
+     */
     public void addQuantity(double amount) {
         this.quantity += amount;
     }
+
+    /**
+     * Намалява количеството с дадена стойност
+     * @param amount стойността, с която се намалява
+     */
     public void removeQuantity(double amount) { this.quantity -= amount; }
 
     @Override

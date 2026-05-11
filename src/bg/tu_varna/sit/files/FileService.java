@@ -21,6 +21,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Работа с файлове
+ */
 public class FileService {
     private static FileService instance;
     private String filePath;
@@ -35,14 +38,24 @@ public class FileService {
         return instance;
     }
 
+    /**
+     * @return пътят към отворения файл
+     */
     public String getFilePath() {
         return filePath;
     }
 
+    /**
+     * Задава пътят към файла, който трябва да бъде отворен
+     * @param filePath пътят към файла
+     */
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * @return дали е отворен файл
+     */
     public boolean isFileOpen() {
         return filePath != null;
     }
@@ -54,6 +67,11 @@ public class FileService {
     public void saveAs(String path) throws Exception {
         saveToPath(path);
     }
+
+    /**
+     * Запазва склада като файл
+     * @param path локация, където да се запише файла
+     */
     private void saveToPath(String path) throws Exception {
         List<Product> products = warehouse.getProducts();
 
@@ -87,6 +105,10 @@ public class FileService {
         return elem;
     }
 
+    /**
+     * Зарежда склад от файл
+     * @return продуктите от файла като списък
+     */
     public List<Product> load() throws Exception {
         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
