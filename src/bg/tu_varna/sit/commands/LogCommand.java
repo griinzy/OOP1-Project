@@ -15,7 +15,7 @@ public class LogCommand implements Command {
 
     @Override
     public String getName() {
-        return "log";
+        return "log ";
     }
 
     @Override

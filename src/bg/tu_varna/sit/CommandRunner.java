@@ -6,6 +6,7 @@ import bg.tu_varna.sit.commands.fileCommands.OpenCommand;
 import bg.tu_varna.sit.commands.fileCommands.SaveAsCommand;
 import bg.tu_varna.sit.commands.fileCommands.SaveCommand;
 import bg.tu_varna.sit.commands.interfaces.Command;
+import bg.tu_varna.sit.enums.CommandType;
 import bg.tu_varna.sit.files.FileService;
 import bg.tu_varna.sit.model.Product;
 import bg.tu_varna.sit.model.Warehouse;
@@ -23,17 +24,21 @@ public class CommandRunner {
     private static final Set<String> allowedCommands = Set.of("open", "help", "exit"); // commands that can be used without having a file open
 
     public CommandRunner() {
-        commands.put("add", new AddCommand());
-        commands.put("remove", new RemoveCommand());
-        commands.put("clean", new CleanCommand());
-        commands.put("log", new LogCommand());
-        commands.put("print", new PrintCommand());
-        commands.put("help", new HelpCommand(commands));
-        commands.put("exit", new ExitCommand(this));
-        commands.put("open", new OpenCommand());
-        commands.put("close", new CloseCommand());
-        commands.put("save", new SaveCommand());
-        commands.put("save as", new SaveAsCommand());
+        registerCommand(CommandType.ADD, new AddCommand());
+        registerCommand(CommandType.REMOVE, new RemoveCommand());
+        registerCommand(CommandType.CLEAN, new CleanCommand());
+        registerCommand(CommandType.LOG, new LogCommand());
+        registerCommand(CommandType.PRINT, new PrintCommand());
+        registerCommand(CommandType.HELP, new HelpCommand(commands));
+        registerCommand(CommandType.EXIT, new ExitCommand(this));
+        registerCommand(CommandType.OPEN, new OpenCommand());
+        registerCommand(CommandType.CLOSE, new CloseCommand());
+        registerCommand(CommandType.SAVE, new SaveCommand());
+        registerCommand(CommandType.SAVE_AS, new SaveAsCommand());
+    }
+
+    private void registerCommand(CommandType type, Command command) {
+        commands.put(type.toString(), command);
     }
 
     public void start() {
