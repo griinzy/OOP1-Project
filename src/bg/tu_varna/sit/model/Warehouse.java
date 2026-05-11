@@ -1,5 +1,8 @@
 package bg.tu_varna.sit.model;
 
+import bg.tu_varna.sit.enums.EntryType;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +14,8 @@ public class Warehouse {
 
     private final List<Product> products = new ArrayList<>();
     private final Map<String, Manufacturer> manufacturers = new HashMap<>();
+
+    private final Log log = Log.getInstance();
 
     private Warehouse() { }
 
@@ -29,6 +34,7 @@ public class Warehouse {
         // еднакви продукти с един и същи срок на годност се поствавят на едно и също място
         for(Product prod : products) {
             if(prod.getName().equals(product.getName()) && prod.getExpiryDate().equals(product.getExpiryDate())) {
+                log.add(new LogEntry(EntryType.ADDED, product.getName(), product.getQuantity(), product.getDateAdded()));
                 prod.addQuantity(product.getQuantity());
                 return;
             }
@@ -40,6 +46,7 @@ public class Warehouse {
     }
 
     public void removeProduct(Product product) {
+        log.add(new LogEntry(EntryType.REMOVED, product.getName(), product.getQuantity(), LocalDate.now()));
         products.remove(product);
     }
 

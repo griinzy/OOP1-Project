@@ -26,6 +26,7 @@ public class CommandRunner {
         commands.put("add", new AddCommand());
         commands.put("remove", new RemoveCommand());
         commands.put("clean", new CleanCommand());
+        commands.put("log", new LogCommand());
         commands.put("print", new PrintCommand());
         commands.put("help", new HelpCommand(commands));
         commands.put("exit", new ExitCommand(this));

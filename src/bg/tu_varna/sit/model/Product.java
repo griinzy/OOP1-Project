@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.model;
 
 import bg.tu_varna.sit.enums.Unit;
+import bg.tu_varna.sit.util.DateParser;
 
 import java.time.LocalDate;
 
@@ -66,6 +67,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return name + " " + expiryDate + " " + dateAdded + " " + manufacturer + " " + unit + " " + quantity + " " + location + " " + comment;
+        return name + "\n\tExpiry Date: " + expiryDate.format(DateParser.formatter) + "\n\tDate Added: " + dateAdded.format(DateParser.formatter) + "\n\tManufacturer: " + manufacturer + "\n\tUnit: " + unit + "\n\tQuantity: " + quantity + "\n\tLocation: " + location + "\n\tComment: " + comment;
     }
 }

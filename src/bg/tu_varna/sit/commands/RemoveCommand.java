@@ -1,14 +1,19 @@
 package bg.tu_varna.sit.commands;
 
 import bg.tu_varna.sit.commands.interfaces.Command;
+import bg.tu_varna.sit.enums.EntryType;
+import bg.tu_varna.sit.model.Log;
+import bg.tu_varna.sit.model.LogEntry;
 import bg.tu_varna.sit.model.Product;
 import bg.tu_varna.sit.model.Warehouse;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
 public class RemoveCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
+    private final Log log = Log.getInstance();
 
     @Override
     public String getName() {
@@ -79,6 +84,7 @@ public class RemoveCommand implements Command {
                         .append(" from ")
                         .append(batch.getLocation())
                         .append("\n");
+                log.add(new LogEntry(EntryType.REMOVED, batch.getName(), remainingQuantity, LocalDate.now()));
                 batch.removeQuantity(remainingQuantity);
                 remainingQuantity = 0;
             }
