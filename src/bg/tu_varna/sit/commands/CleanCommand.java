@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Премахват се всички стоки с изтекъл или чиито срок на годност скоро ще изтече.
+ */
 public class CleanCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
 

@@ -4,7 +4,9 @@ import bg.tu_varna.sit.commands.interfaces.Command;
 
 import java.util.Map;
 
-
+/**
+ * Извежда информация за поддържаните команди.
+ */
 public class HelpCommand implements Command {
     private final Map<String, Command> commands;
 

@@ -3,6 +3,9 @@ package bg.tu_varna.sit.commands.fileCommands;
 import bg.tu_varna.sit.commands.interfaces.Command;
 import bg.tu_varna.sit.files.FileService;
 
+/**
+ * Запазва промените в отворения файл.
+ */
 public class SaveCommand implements Command {
     private final FileService fileService = FileService.getInstance();
 

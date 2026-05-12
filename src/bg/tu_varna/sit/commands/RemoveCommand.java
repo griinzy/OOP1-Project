@@ -11,6 +11,11 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Изважда продукт от склада.
+ * При дадено име и количество се изважда даденото количество от продукта с най-скоро изтичащ срок на годност с даденото име.
+ * При опит за изваждане на повече продукти, от колкото са налични се запитва дали потребителя иска да искара всичко, което е налично.
+ */
 public class RemoveCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
     private final Log log = Log.getInstance();

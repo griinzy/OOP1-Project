@@ -6,6 +6,9 @@ import bg.tu_varna.sit.model.Warehouse;
 
 import java.util.List;
 
+/**
+ * Извежда всички налични продукти в склада
+ */
 public class PrintCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
 

@@ -3,6 +3,9 @@ package bg.tu_varna.sit.commands;
 import bg.tu_varna.sit.CommandRunner;
 import bg.tu_varna.sit.commands.interfaces.Command;
 
+/**
+ * Прекратява изпълнението на програмата.
+ */
 public class ExitCommand implements Command {
     private final CommandRunner runner;
 

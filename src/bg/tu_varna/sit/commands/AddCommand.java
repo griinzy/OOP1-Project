@@ -9,6 +9,11 @@ import bg.tu_varna.sit.util.DateParser;
 
 import java.time.LocalDate;
 
+/**
+ * Добавя нов продукт в склада.
+ * Ако съществува продукт с еднакво име и срок на годност, количеството му се добавя към това на другия продукт.
+ * Ако съществува продукт с еднакви име и различен срок на годност, той се добавя като отделен продукт.
+ */
 public class AddCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
 

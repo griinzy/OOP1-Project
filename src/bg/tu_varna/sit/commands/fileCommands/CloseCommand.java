@@ -4,6 +4,10 @@ import bg.tu_varna.sit.commands.interfaces.Command;
 import bg.tu_varna.sit.files.FileService;
 import bg.tu_varna.sit.model.Warehouse;
 
+/**
+ * Затваря отворения файл.
+ * Изчиства заредената информация.
+ */
 public class CloseCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
     private final FileService fileService = FileService.getInstance();

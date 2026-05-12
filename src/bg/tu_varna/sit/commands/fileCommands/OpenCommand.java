@@ -9,6 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Зарежда продуктите от зададен файл.
+ * Ако файл не съществува, той се създава.
+ * Всички останали команди се изпълняват само ако има успешно зареден файл.
+ */
 public class OpenCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
     private final FileService fileService = FileService.getInstance();

@@ -9,6 +9,9 @@ import bg.tu_varna.sit.util.DateParser;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Извежда справка за всички промени в наличността в периода между две зададени дати.
+ */
 public class LogCommand implements Command {
     private final Warehouse warehouse = Warehouse.getInstance();
     private final Log log = Log.getInstance();
